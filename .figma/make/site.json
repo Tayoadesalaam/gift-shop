@@ -1,0 +1,12 @@
+{
+  "title": "Aveline Gifts — Thoughtful, Personalized Gifting",
+  "description": "Enables customers to request personalized gifts via a guided questionnaire while staff manage requests and communications through a secure admin dashboard.",
+  "language": "en",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": true,
+    "ignoreReducedMotion": false
+  }
+}
