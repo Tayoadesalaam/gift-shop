@@ -82,15 +82,7 @@ export function HomePage() {
                 Explore our creations
               </LinkButton>
             </div>
-            <div className="hero-trust">
-              <span>
-                <ShieldCheck size={17} aria-hidden="true" /> Private by design
-              </span>
-              <span>
-                <Clock3 size={17} aria-hidden="true" /> Reply within one
-                business day
-              </span>
-            </div>
+
           </div>
           <div className="hero-visual">
             <div className="hero-image-wrap">
@@ -107,44 +99,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="how-section">
-        <div className="shell">
-          <SectionHeading
-            eyebrow="A more thoughtful way to gift"
-            title="You bring the story. We’ll shape the rest."
-            copy="No endless scrolling. Just a warm, guided process built around the person you know best."
-          />
-          <div className="process-grid">
-            {[
-              {
-                number: "01",
-                icon: PenLine,
-                title: "Tell us about them",
-                copy: "Share their personality, favorite things, your relationship, and the moment you’re celebrating.",
-              },
-              {
-                number: "02",
-                icon: Sparkles,
-                title: "We curate with care",
-                copy: "We translate those details into a personal gift direction, thoughtfully chosen and beautifully presented.",
-              },
-              {
-                number: "03",
-                icon: PackageCheck,
-                title: "We make it happen",
-                copy: "Approve the idea, then we coordinate the personal touches, packaging, and next steps with you.",
-              },
-            ].map(({ number, icon: Icon, title, copy }) => (
-              <article className="process-card" key={number}>
-                <span className="process-number">{number}</span>
-                <Icon aria-hidden="true" strokeWidth={1.5} />
-                <h3>{title}</h3>
-                <p>{copy}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       <section className="featured-section">
         <div className="shell">
