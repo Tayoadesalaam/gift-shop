@@ -1,12 +1,12 @@
 {
-  "title": "Aveline Gifts — Thoughtful, Personalized Gifting",
-  "description": "Enables customers to request personalized gifts via a guided questionnaire while staff manage requests and communications through a secure admin dashboard.",
+  "title": "LoveZrap | Thoughtful, Personalized Gifts",
+  "description": "Thoughtful, personalized gifts made around the people and moments that matter. Share your story and explore gift inspiration from LoveZrap.",
   "language": "en",
   "robots": {
     "index": false
   },
   "accessibility": {
-    "addBypassLinks": true,
+    "addBypassLinks": false,
     "ignoreReducedMotion": false
   }
 }

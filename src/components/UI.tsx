@@ -8,6 +8,14 @@ import type {
 import { Link } from "react-router"
 import { ArrowRight } from "lucide-react"
 
+export function SkipLink({ href }: { href: string }) {
+  return (
+    <a className="skip-link" href={href}>
+      Skip to content
+    </a>
+  )
+}
+
 export function Button({
   children,
   className = "",

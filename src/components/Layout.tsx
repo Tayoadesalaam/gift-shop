@@ -13,7 +13,7 @@ import {
 } from "lucide-react"
 import { brand } from "../data/content"
 import { useToggle } from "../hooks/useToggle"
-import { LinkButton, PreviewNotice } from "./UI"
+import { LinkButton, PreviewNotice, SkipLink } from "./UI"
 
 const publicLinks = [
   { to: "/our-creations", label: "Our Creations" },
@@ -33,9 +33,7 @@ export function PublicLayout() {
 
   return (
     <div className="site">
-      <a className="skip-link" href="#main-content">
-        Skip to content
-      </a>
+      <SkipLink href="#main-content" />
       <header className="site-header">
         <div className="shell header-inner">
           <Link className="brand-lockup" to="/" aria-label={`${brand.name} home`}>
@@ -80,7 +78,7 @@ export function PublicLayout() {
           </nav>
         )}
       </header>
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <Outlet />
       </main>
       <footer className="site-footer">
@@ -135,6 +133,7 @@ const adminLinks = [
 export function AdminLayout() {
   return (
     <div className="admin-app">
+      <SkipLink href="#admin-main" />
       <aside className="admin-sidebar">
         <Link className="brand-lockup" to="/">
           <img src="/logo.png" alt={brand.name} className="logo" />
@@ -166,7 +165,7 @@ export function AdminLayout() {
           </Link>
           <Link to="/admin/requests">Requests</Link>
         </div>
-        <main>
+        <main id="admin-main" tabIndex={-1}>
           <Outlet />
         </main>
       </div>

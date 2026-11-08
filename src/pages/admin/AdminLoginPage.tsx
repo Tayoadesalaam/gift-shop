@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react"
 import { Link } from "react-router"
 import { ArrowRight, Eye, EyeOff, Heart } from "lucide-react"
-import { Button, Field, Input } from "../../components/UI"
+import { Button, Field, Input, SkipLink } from "../../components/UI"
 
 export default function AdminLoginPage() {
   const [showPassword, setShowPassword] = useState(false)
@@ -14,6 +14,7 @@ export default function AdminLoginPage() {
 
   return (
     <div className="login-page">
+      <SkipLink href="#login-main" />
       <div className="login-brand">
         <Link to="/">
           <Heart size={18} fill="currentColor" /> LoveZrap
@@ -21,7 +22,7 @@ export default function AdminLoginPage() {
         <blockquote>“Thoughtfulness is the quiet art of noticing.”</blockquote>
         <p>Private studio operations</p>
       </div>
-      <div className="login-panel">
+      <main className="login-panel" id="login-main" tabIndex={-1}>
         <div className="login-card">
           <p className="admin-kicker">Staff access</p>
           <h1>Welcome back.</h1>
@@ -66,7 +67,7 @@ export default function AdminLoginPage() {
           </Link>
           <small>Access is limited to authorized LoveZrap staff.</small>
         </div>
-      </div>
+      </main>
     </div>
   )
 }
