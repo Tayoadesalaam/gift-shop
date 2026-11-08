@@ -1,10 +1,10 @@
+import type { ComponentType } from "react"
 import { createBrowserRouter } from "react-router"
 import { AdminLayout, PublicLayout } from "../components/Layout"
 
-const lazyPage = async (modulePath: string, exportName: string) => {
-  const module = await import(modulePath)
-  return { Component: module[exportName as keyof typeof module] }
-}
+const lazyPage = async (loadComponent: () => Promise<ComponentType>) => ({
+  Component: await loadComponent(),
+})
 
 export const router = createBrowserRouter([
   {
@@ -13,54 +13,100 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        lazy: async () => lazyPage("../pages/public/HomePage", "default"),
+        lazy: () =>
+          lazyPage(() =>
+            import("../pages/public/HomePage").then(({ default: Page }) => Page),
+          ),
       },
       {
         path: "create-gift",
-        lazy: async () => {
-          const { default: Component } = await import(
-            "../features/gift-request/CreateGiftPage"
-          )
-          return { Component }
-        },
+        lazy: () =>
+          lazyPage(() =>
+            import("../features/gift-request/CreateGiftPage").then(
+              ({ default: Page }) => Page,
+            ),
+          ),
       },
       {
         path: "request-success",
-        lazy: async () => lazyPage("../pages/public/RequestSuccessPage", "default"),
+        lazy: () =>
+          lazyPage(() =>
+            import("../pages/public/RequestSuccessPage").then(
+              ({ default: Page }) => Page,
+            ),
+          ),
       },
       {
         path: "our-creations",
-        lazy: async () => lazyPage("../pages/public/CreationsPage", "default"),
+        lazy: () =>
+          lazyPage(() =>
+            import("../pages/public/CreationsPage").then(
+              ({ default: Page }) => Page,
+            ),
+          ),
       },
       {
         path: "about",
-        lazy: async () => lazyPage("../pages/public/AboutPage", "default"),
+        lazy: () =>
+          lazyPage(() =>
+            import("../pages/public/AboutPage").then(
+              ({ default: Page }) => Page,
+            ),
+          ),
       },
       {
         path: "faqs",
-        lazy: async () => lazyPage("../pages/public/FaqPage", "default"),
+        lazy: () =>
+          lazyPage(() =>
+            import("../pages/public/FaqPage").then(({ default: Page }) => Page),
+          ),
       },
       {
         path: "contact",
-        lazy: async () => lazyPage("../pages/public/ContactPage", "default"),
+        lazy: () =>
+          lazyPage(() =>
+            import("../pages/public/ContactPage").then(
+              ({ default: Page }) => Page,
+            ),
+          ),
       },
       {
         path: "privacy",
-        lazy: async () => lazyPage("../pages/public/LegalPage", "PrivacyPage"),
+        lazy: () =>
+          lazyPage(() =>
+            import("../pages/public/LegalPage").then(
+              ({ PrivacyPage }) => PrivacyPage,
+            ),
+          ),
       },
       {
         path: "terms",
-        lazy: async () => lazyPage("../pages/public/LegalPage", "TermsPage"),
+        lazy: () =>
+          lazyPage(() =>
+            import("../pages/public/LegalPage").then(
+              ({ TermsPage }) => TermsPage,
+            ),
+          ),
       },
       {
         path: "*",
-        lazy: async () => lazyPage("../pages/public/NotFoundPage", "default"),
+        lazy: () =>
+          lazyPage(() =>
+            import("../pages/public/NotFoundPage").then(
+              ({ default: Page }) => Page,
+            ),
+          ),
       },
     ],
   },
   {
     path: "/admin/login",
-    lazy: async () => lazyPage("../pages/admin/AdminLoginPage", "default"),
+    lazy: () =>
+      lazyPage(() =>
+        import("../pages/admin/AdminLoginPage").then(
+          ({ default: Page }) => Page,
+        ),
+      ),
   },
   {
     path: "/admin",
@@ -68,32 +114,66 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        lazy: async () => lazyPage("../pages/admin/AdminDashboardPage", "default"),
+        lazy: () =>
+          lazyPage(() =>
+            import("../pages/admin/AdminDashboardPage").then(
+              ({ default: Page }) => Page,
+            ),
+          ),
       },
       {
         path: "requests",
-        lazy: async () => lazyPage("../pages/admin/AdminRequestsPage", "default"),
+        lazy: () =>
+          lazyPage(() =>
+            import("../pages/admin/AdminRequestsPage").then(
+              ({ default: Page }) => Page,
+            ),
+          ),
       },
       {
         path: "requests/:id",
-        lazy: async () =>
-          lazyPage("../pages/admin/AdminRequestDetailPage", "default"),
+        lazy: () =>
+          lazyPage(() =>
+            import("../pages/admin/AdminRequestDetailPage").then(
+              ({ default: Page }) => Page,
+            ),
+          ),
       },
       {
         path: "portfolio",
-        lazy: async () => lazyPage("../pages/admin/AdminPortfolioPage", "default"),
+        lazy: () =>
+          lazyPage(() =>
+            import("../pages/admin/AdminPortfolioPage").then(
+              ({ default: Page }) => Page,
+            ),
+          ),
       },
       {
         path: "faqs",
-        lazy: async () => lazyPage("../pages/admin/AdminFaqPage", "default"),
+        lazy: () =>
+          lazyPage(() =>
+            import("../pages/admin/AdminFaqPage").then(
+              ({ default: Page }) => Page,
+            ),
+          ),
       },
       {
         path: "messages",
-        lazy: async () => lazyPage("../pages/admin/AdminMessagesPage", "default"),
+        lazy: () =>
+          lazyPage(() =>
+            import("../pages/admin/AdminMessagesPage").then(
+              ({ default: Page }) => Page,
+            ),
+          ),
       },
       {
         path: "settings",
-        lazy: async () => lazyPage("../pages/admin/AdminSettingsPage", "default"),
+        lazy: () =>
+          lazyPage(() =>
+            import("../pages/admin/AdminSettingsPage").then(
+              ({ default: Page }) => Page,
+            ),
+          ),
       },
     ],
   },
