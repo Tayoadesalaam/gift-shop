@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Link, NavLink, Outlet, useLocation } from "react-router"
 import {
   CircleHelp,
   Gift,
+  Heart,
   LayoutDashboard,
   Menu,
   MessageSquare,
   PackageOpen,
   Settings,
-  Sparkles,
   X,
 } from "lucide-react"
 import { brand } from "../data/content"
+import { useToggle } from "../hooks/useToggle"
 import { LinkButton, PreviewNotice } from "./UI"
 
 const publicLinks = [
@@ -22,13 +23,13 @@ const publicLinks = [
 ]
 
 export function PublicLayout() {
-  const [open, setOpen] = useState(false)
+  const { isOpen: open, close, toggle } = useToggle(false)
   const location = useLocation()
 
   useEffect(() => {
-    setOpen(false)
-    window.scrollTo({ top: 0, behavior: "instant" })
-  }, [location.pathname])
+    close()
+    window.scrollTo({ top: 0, behavior: "auto" })
+  }, [close, location.pathname])
 
   return (
     <div className="site">
@@ -37,9 +38,9 @@ export function PublicLayout() {
       </a>
       <header className="site-header">
         <div className="shell header-inner">
-          <Link className="wordmark" to="/" aria-label={`${brand.name} home`}>
-            <Sparkles size={16} strokeWidth={1.5} aria-hidden="true" />
-            <span>{brand.name}</span>
+          <Link className="brand-lockup" to="/" aria-label={`${brand.name} home`}>
+            <img src="/logo.png" alt={brand.name} className="logo" />
+            <span className="brand-label">LoveZrap</span>
           </Link>
           <nav className="desktop-nav" aria-label="Primary navigation">
             {publicLinks.map((link) => (
@@ -55,7 +56,7 @@ export function PublicLayout() {
             <button
               className="menu-button"
               type="button"
-              onClick={() => setOpen((value) => !value)}
+              onClick={toggle}
               aria-expanded={open}
               aria-controls="mobile-nav"
               aria-label={open ? "Close navigation" : "Open navigation"}
@@ -85,11 +86,12 @@ export function PublicLayout() {
       <footer className="site-footer">
         <div className="shell footer-main">
           <div className="footer-brand">
-            <Link className="wordmark wordmark-light" to="/">
-              <Sparkles size={16} strokeWidth={1.5} aria-hidden="true" />
-              <span>{brand.name}</span>
+            <Link className="brand-lockup brand-lockup-light" to="/">
+              <img src="/logo.png" alt={brand.name} className="logo" />
+              <span className="brand-label">LoveZrap</span>
             </Link>
             <p>{brand.tagline}</p>
+            <p className="footer-small">Founded by {brand.founder}</p>
           </div>
           <div>
             <p className="footer-label">Explore</p>
@@ -134,9 +136,9 @@ export function AdminLayout() {
   return (
     <div className="admin-app">
       <aside className="admin-sidebar">
-        <Link className="wordmark" to="/">
-          <Sparkles size={16} strokeWidth={1.5} aria-hidden="true" />
-          <span>{brand.name}</span>
+        <Link className="brand-lockup" to="/">
+          <img src="/logo.png" alt={brand.name} className="logo" />
+          <span className="brand-label">LoveZrap</span>
         </Link>
         <p className="admin-kicker">Studio desk</p>
         <nav aria-label="Admin navigation">
@@ -158,8 +160,9 @@ export function AdminLayout() {
       <div className="admin-content">
         <PreviewNotice />
         <div className="admin-mobile-header">
-          <Link className="wordmark" to="/">
-            {brand.name}
+          <Link className="brand-lockup brand-lockup-mobile" to="/">
+            <img src="/logo.png" alt={brand.name} className="logo logo-mobile" />
+            <span className="brand-label">LoveZrap</span>
           </Link>
           <Link to="/admin/requests">Requests</Link>
         </div>

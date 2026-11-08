@@ -1,0 +1,8 @@
+export { default as HomePage } from "./HomePage"
+export { default as CreationsPage } from "./CreationsPage"
+export { default as AboutPage } from "./AboutPage"
+export { default as FaqPage } from "./FaqPage"
+export { default as ContactPage } from "./ContactPage"
+export { PrivacyPage, TermsPage } from "./LegalPage"
+export { default as RequestSuccessPage } from "./RequestSuccessPage"
+export { default as NotFoundPage } from "./NotFoundPage"

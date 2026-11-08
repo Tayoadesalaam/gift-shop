@@ -1,7 +1,8 @@
 export const brand = {
-  name: "Aveline Gifts",
+  name: "LoveZrap",
   tagline: "Made personal. Remembered always.",
-  email: "hello@avelinegifts.com",
+  email: "hello@lovezrap.com",
+  founder: "Damilola Babalola",
 }
 
 export const photos = {

@@ -1,12 +1,12 @@
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import {
   ArrowLeft,
   ArrowRight,
   Check,
+  Heart,
   LockKeyhole,
   Pencil,
   ShieldCheck,
-  Sparkles,
 } from "lucide-react"
 import { Link } from "react-router"
 import {
@@ -17,6 +17,7 @@ import {
   Select,
   Textarea,
 } from "../../components/UI"
+import { useSessionStorageState } from "../../hooks/useSessionStorageState"
 
 type GiftForm = {
   occasion: string
@@ -165,20 +166,12 @@ function ChoiceGrid({
 
 export default function CreateGiftPage() {
   const [step, setStep] = useState(0)
-  const [form, setForm] = useState<GiftForm>(() => {
-    try {
-      const saved = sessionStorage.getItem("aveline-gift-draft-v1")
-      return saved ? { ...emptyForm, ...JSON.parse(saved) } : emptyForm
-    } catch {
-      return emptyForm
-    }
-  })
+  const [form, setForm] = useSessionStorageState<GiftForm>(
+    "lovezrap-gift-draft-v1",
+    emptyForm,
+  )
   const [error, setError] = useState("")
   const [submitError, setSubmitError] = useState(false)
-
-  useEffect(() => {
-    sessionStorage.setItem("aveline-gift-draft-v1", JSON.stringify(form))
-  }, [form])
 
   const update = <K extends keyof GiftForm>(key: K, value: GiftForm[K]) => {
     setForm((current) => ({ ...current, [key]: value }))
@@ -248,14 +241,7 @@ export default function CreateGiftPage() {
   return (
     <section className="gift-flow">
       <div className="gift-flow-top">
-        <div className="shell">
-          <Link to="/" className="flow-brand">
-            <Sparkles size={16} /> Aveline Gifts
-          </Link>
-          <div className="flow-security">
-            <LockKeyhole size={15} /> Your details stay private
-          </div>
-        </div>
+        <div className="shell" />
       </div>
       <div className="flow-progress">
         <div className="flow-progress-bar" style={{ width: progress }} />
