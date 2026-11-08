@@ -83,8 +83,7 @@ export const faqs = [
   {
     category: "Budget",
     question: "Is there a minimum budget?",
-    answer:
-      "We work across several budget ranges, beginning below $75. Your budget guides every recommendation, and nothing moves forward without your approval.",
+    answer: "We work across several budget ranges, starting as low as $20.",
   },
   {
     category: "Personalization",
